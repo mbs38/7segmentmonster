@@ -52,7 +52,7 @@ def drawRect(segmatrix, pos_x, pos_y, sz_x, sz_y, brightness=32):
 
 
 
-segMonster.initSock("172.29.7.101",7536) # set target display ip and port
+segMonster.initSock("172.29.7.102",7536) # set target display ip and port
 
 text_brightness=63
 

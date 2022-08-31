@@ -102,7 +102,7 @@ class textLine():
                             matrix[posy*3+y][posx*3+x][self.segmentMap[seg]]=63
                     
 
-segMonster.initSock("172.29.7.101",7536) # set target display ip and port
+segMonster.initSock("172.29.7.102",7536) # set target display ip and port
 
 test="Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 test=test.upper()

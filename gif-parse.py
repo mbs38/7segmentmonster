@@ -36,7 +36,7 @@ def testpixel_lo(x):
         return True
     return False
 
-segMonster.initSock("172.29.7.101",7536) # set target display ip and port
+segMonster.initSock("172.29.7.102",7536) # set target display ip and port
 
 text_brightness=13
 
