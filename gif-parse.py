@@ -55,6 +55,7 @@ def thread_worker():
 
         img=img.resize((96,36))
         print(frame)
+        img=img.convert("L")
         img_pix=img.load() # load pixels of image
         for x in range(img.size[0]):
             for y in range(img.size[1]):
@@ -81,4 +82,3 @@ def thread_worker():
 t = threading.Thread(target=thread_worker)
 t.start()
 t.join()
-
