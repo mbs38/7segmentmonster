@@ -118,13 +118,13 @@ gammaTable=[0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 8,
 def sendData(rawdata):
     global sock
     digSum=0
+    outdata=[]
     for x in rawdata:
         digSum+=x
-    for pos in range(len(rawdata)):
-        rawdata[pos]=gammaTable[rawdata[pos]]
-    MESSAGE=b"D"+bytes(rawdata)
+    for pos in rawdata:
+        outdata.append(gammaTable[int(pos)])
+    MESSAGE=b"D"+bytes(outdata)
     sock.sendto(MESSAGE, (UDP_IP, UDP_PORT))
-
 
 # safe to 7sg files and read from 7sg files
 filename=""
