@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Pong</title>
+</head>
+<body>
+    <h1>Interactive Pong</h1>
+    <hr>
+    <form id="slider-form">
+        <label for="slider">Slider:</label>
+        <input type="range" id="slider" name="slider" min="0" max="10" value="0" style="transform: rotate(90deg);">
+        <p>Value: <span id="slider-value">{{ slider_value }}</span></p>
+        
+        <label>Radio:</label>
+        <input type="radio" id="radio_l" name="radio" value="L" checked>
+        <label for="radio_l">L</label>
+        
+        <input type="radio" id="radio_r" name="radio" value="R">
+        <label for="radio_r">R</label>
+    </form>
+
+    <script>
+        // Send slider value to the server without requiring a button click
+        var slider = document.getElementById('slider');
+        var sliderValueElement = document.getElementById('slider-value');
+
+        slider.addEventListener('input', function() {
+            var sliderValue = slider.value;
+            sliderValueElement.textContent = sliderValue;
+            sendDataToServer(sliderValue);
+        });
+
+        // Send data to the server using Fetch API
+        function sendDataToServer(sliderValue) {
+            var radioSelection = document.querySelector('input[name="radio"]:checked').value;
+            fetch('/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'slider=' + sliderValue + '&radio=' + radioSelection
+            })
+            .then(function(response) {
+                console.log('Data sent successfully');
+            })
+            .catch(function(error) {
+                console.error('Error sending data:', error);
+            });
+        }
+    </script>
+</body>
+</html>
