@@ -1,5 +1,4 @@
 import segMonster
-import segMonsterSimulatorGui3
 import segMonsterSimulator
 import threading
 import argparse
