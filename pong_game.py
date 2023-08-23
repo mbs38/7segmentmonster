@@ -31,8 +31,8 @@ class Game: # for change of speed increase Frame Rate
             self.ball_position[1] = self.height-1 if self.ball_position[1] >= self.height else 0
             self.update()
 
-        if not (0 <= self.ball_position[0] < self.width):
-            if self.ball_position[1] in [(self.pos_1+i if self.ball_position[0] <= 0 else self.pos_2+i) for i in range(self.padel_len)]:
+        if not (0 < self.ball_position[0] < self.width-1):
+            if self.ball_position[1] in [(self.pos_1+i if self.ball_position[0] <= 0 else self.pos_2+i) for i in range(-1,self.padel_len)]:
                 self.ball_speed[0] = -self.ball_speed[0]
                 self.ball_speed[1] += self.last_pos_1 - self.pos_1 if self.ball_position[0] <= 0 else self.last_pos_2 - self.pos_2
 
