@@ -1,7 +1,9 @@
 import segMonster
 import segMonsterSimulator
 import time
-
+# Make subroutine which calls a file when inactive and kills it otherwise
+# Button taps instead of slider
+# seems that it does not react when there is something on the top of the paddle
 class Game: # for change of speed increase Frame Rate
     def __init__(self):
         self.pos_1 = 0
@@ -20,6 +22,7 @@ class Game: # for change of speed increase Frame Rate
         self.__init__()
 
     def update(self):
+        reset = False
         self.ball_position[0] += self.ball_speed[0]
         self.ball_position[1] += self.ball_speed[1]
 
@@ -28,18 +31,20 @@ class Game: # for change of speed increase Frame Rate
             self.ball_position[1] = self.height-1 if self.ball_position[1] >= self.height else 0
             self.update()
 
-        if not (0 < self.ball_position[0] < self.width-1):
-            if self.ball_position[1] in [(self.pos_1+i if self.ball_position[0] <= 0 else self.pos_2+i) for i in range(self.padel_len-1)]:
+        if not (0 <= self.ball_position[0] < self.width):
+            if self.ball_position[1] in [(self.pos_1+i if self.ball_position[0] <= 0 else self.pos_2+i) for i in range(self.padel_len)]:
                 self.ball_speed[0] = -self.ball_speed[0]
                 self.ball_speed[1] += self.last_pos_1 - self.pos_1 if self.ball_position[0] <= 0 else self.last_pos_2 - self.pos_2
 
                 self.ball_position[0] = 1 if self.ball_position[0] <= 0 else self.width-2
                 self.update()
             else:
+                reset = True
                 self.reset()
 
         self.last_pos_1 = self.pos_1
         self.last_pos_2 = self.pos_2
+        return reset
 
     def draw_paddel(self, mat, x, y):
         for i in range(self.padel_len):
