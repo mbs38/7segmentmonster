@@ -43,13 +43,13 @@ class Game: # for change of speed increase Frame Rate
 
     def draw_paddel(self, mat, x, y):
         for i in range(self.padel_len):
-            mat[int((y+i)/2)][x][5-(y+i)%2] = 1
+            mat[int((y+i)/2)][x][5-(y+i)%2] = 63
 
     def state_to_monster(self):
         mat = segMonster.createDigitMatrix()
         self.draw_paddel(mat, 0, self.pos_1)
         self.draw_paddel(mat, self.width-1, self.pos_2)
-        mat[int(self.ball_position[1]/2)][self.ball_position[0]] = [0,0,1,1,1,0,1,0] if self.ball_position[1]%2 else [1,1,0,0,0,1,1,0]
+        mat[int(self.ball_position[1]/2)][self.ball_position[0]] = [0,0,63,63,63,0,63,0] if self.ball_position[1]%2 else [63,63,0,0,0,63,63,0]
         return mat
 if __name__ == "__main__":
     FPS = 10

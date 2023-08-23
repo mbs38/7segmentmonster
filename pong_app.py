@@ -1,9 +1,11 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template_string, request, jsonify
 import pong_game
 import segMonster, segMonsterSimulator
 import threading, time
 
 app = Flask(__name__)
+with open("pong_index.html") as file:
+    template = file.read()
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -16,8 +18,8 @@ def index():
         else:
             state.set("pos_2", int(request.form['slider']))
         return jsonify(success=True)
-
-    return render_template('../pong_index.html', slider_value=0, radio_selection='L')
+    
+    return render_template_string(template)
 
 def webserver(state):
     app.config['STATE'] = state
